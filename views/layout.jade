@@ -8,8 +8,9 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
         header
-            i(class="fa fa-comment")
-            h1= title
+            h1 
+                i(class="fa fa-comment")
+                | #{title}
             hr
         block content
         footer
