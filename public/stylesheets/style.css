@@ -5,6 +5,10 @@ body {
 a {
     color: #00B7FF;
 }
-.welcome {
-    text-align: center;
+@media (min-width: 400px) {
+    .welcome {
+        text-align: center;
+    }
+#messages ul{
+    list-style-type: none;
 }
