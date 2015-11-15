@@ -73,6 +73,14 @@ function normalizePort(val) {
      var roomId = addNewClient();
      socket.join(roomId); // We are using room of socket io
      socket.emit('giveRoomIdToClient', roomId);
+
+     var thisRoom = io.sockets.adapter.rooms[roomId];
+     if (Object.keys(thisRoom).length < 2) {
+         io.to(roomId).emit('chat message', "Welcome to " + roomId + " - please wait to be joined!");
+     }
+     else {
+         io.to(roomId).emit('chat message', "Welcome to room " + roomId + " - say hi!");
+     }
    });
  });
 
