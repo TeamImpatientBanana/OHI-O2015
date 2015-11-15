@@ -20,7 +20,7 @@ li{
     left: 0;
     right: 0;
     bottom: 0;
-    height: 100px%;
+    height: 100px;
     /*width: 80%;*/
 }
 @media (max-width: 549px) {
@@ -31,14 +31,16 @@ li{
     }
 @media (max-width: 549px) {
     #chat-input {
-        width: 70%;
-        margin-left:5%;
+        width: 80%;
+        margin-left:auto;
     }
 }
 #message-box {
     border-radius: 5px;
     border: 2px solid #33C3F0;
     width: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
     }
 @media (max-height: 479px) {
     header {
