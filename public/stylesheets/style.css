@@ -9,6 +9,6 @@ a {
     .welcome {
         text-align: center;
     }
-#messages ul{
+li{
     list-style-type: none;
 }
