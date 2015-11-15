@@ -6,9 +6,12 @@ socket.emit('join');
 
 $('form').submit(function() {
     if ($('#chat-input').val() !== "") {
-        socket.emit('chat message', $('#chat-input').val());
+        socket.emit('chat message', {
+            "message":$('#chat-input').val(),
+            "currentRoomId": currentRoomId
+        });
         $('#chat-input').val('');
-   }
+    }
     return false;
 });
 
@@ -18,5 +21,5 @@ socket.on('chat message', function(msg) {
 
 socket.on('giveRoomIdToClient', function(msg) {
     currentRoomId = msg;
-    console.log(msg);
+    console.log("currentRoomId", currentRoomId);
 });
