@@ -35,3 +35,10 @@ li{
         margin-left:5%;
     }
 }
+#message-box {
+    border-radius: 5px;
+    border: 2px solid #33C3F0;
+    width: auto;
+    height:auto;
+    max-height: 60%;
+    }
