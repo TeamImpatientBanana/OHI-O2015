@@ -4,10 +4,11 @@ block content
     div(class="container")
         div(class="row")
             ul(id="messages")
-        div(class="row")
+        div(id="input", class="row")
             form
                 label(for="chat-input")
-                input(class="u-full-width", type="text", placeholder="Enter Message Here", id="chat-input")
-                input(class="button-primary", type="submit", value="Send")
+                input(class="ten columns", type="text", placeholder="Enter Message Here", id="chat-input")
+                button(class="button-primary", type="submit") 
+                    i(class="fa fa-arrow-right")
 
     
