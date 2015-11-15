@@ -7,7 +7,7 @@ socket.emit('join');
 $('form').submit(function() {
     if ($('#chat-input').val() !== "") {
         socket.emit('chat message', {
-            "message":$('#chat-input').val(),
+            "message": $('#chat-input').val(),
             "currentRoomId": currentRoomId
         });
         $('#chat-input').val('');

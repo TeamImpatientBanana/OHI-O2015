@@ -48,41 +48,39 @@ function normalizePort(val) {
  * socket.io stuff
  **/
 
-  var rooms=[];
+var rooms = [];
 
-  function addNewClient(){
-      var thisRoom = io.sockets.adapter.rooms[rooms[rooms.length-1]];
-      console.log("currentroomId", rooms[rooms.length-1]);
-      if (thisRoom && Object.keys(thisRoom).length < 2) {
-          console.log("lengthOfRoom", Object.keys(thisRoom).length);
-          console.log("joinExistingRoom", rooms[rooms.length-1]);
-          // add person to last made room
-          return rooms[rooms.length-1];
-      }
-      else {
-          // make new room
-          var roomId = Math.random().toString(36).slice(2);
-          rooms.push(roomId);
-          console.log("madeNewRoom", roomId);
-          return roomId;
-      }
-  }
+function addNewClient() {
+    var thisRoom = io.sockets.adapter.rooms[rooms[rooms.length - 1]];
+    console.log("currentroomId", rooms[rooms.length - 1]);
+    if (thisRoom && Object.keys(thisRoom).length < 2) {
+        console.log("lengthOfRoom", Object.keys(thisRoom).length);
+        console.log("joinExistingRoom", rooms[rooms.length - 1]);
+        // add person to last made room
+        return rooms[rooms.length - 1];
+    } else {
+        // make new room
+        var roomId = Math.random().toString(36).slice(2);
+        rooms.push(roomId);
+        console.log("madeNewRoom", roomId);
+        return roomId;
+    }
+}
 
- io.sockets.on('connection', function (socket) {
-   socket.on('join', function (data) {
-     var roomId = addNewClient();
-     socket.join(roomId); // We are using room of socket io
-     socket.emit('giveRoomIdToClient', roomId);
+io.sockets.on('connection', function(socket) {
+    socket.on('join', function(data) {
+        var roomId = addNewClient();
+        socket.join(roomId); // We are using room of socket io
+        socket.emit('giveRoomIdToClient', roomId);
 
-     var thisRoom = io.sockets.adapter.rooms[roomId];
-     if (Object.keys(thisRoom).length < 2) {
-         io.to(roomId).emit('chat message', "Welcome to " + roomId + " - please wait to be joined!");
-     }
-     else {
-         io.to(roomId).emit('chat message', "Welcome to room " + roomId + " - say hi!");
-     }
-   });
- });
+        var thisRoom = io.sockets.adapter.rooms[roomId];
+        if (Object.keys(thisRoom).length < 2) {
+            io.to(roomId).emit('chat message', "Welcome to " + roomId + " - please wait to be joined!");
+        } else {
+            io.to(roomId).emit('chat message', "Welcome to room " + roomId + " - say hi!");
+        }
+    });
+});
 
 io.on('connection', function(socket) {
     console.log('a user connected');
