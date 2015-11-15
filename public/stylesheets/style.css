@@ -10,7 +10,7 @@ a {
 }
 .welcome {
         text-align: center;
-        font-size: 4vw;
+        margin-bottom: 0px;
 }
 li{
     list-style-type: none;
@@ -73,5 +73,10 @@ li{
 @media (min-height: 1000px) {
     #message-box {
         height: 75vh;
+    }
+}
+@media (max-width: 360px) {
+    #chat-input {
+        width: 70%;
     }
 }

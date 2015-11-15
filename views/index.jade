@@ -3,9 +3,9 @@ extends layout
 block content
     div(class="container")
         div(class="row")
-            p(class="welcome") Welcome to #{title}.
-            p(class="welcome") Talk to your bros.
-            p(class="welcome") Talk to your dogs.
+            h2(class="welcome") Talk to your bros. <br>
+                | Talk to your dogs. <br>
+            h5(class="welcome") bro.dog
         div(class="row")
             div(id="welcome", class="four columns offset-by-four welcome")
                 a(class="button button-primary", href="/chat") Enter
