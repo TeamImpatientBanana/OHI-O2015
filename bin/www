@@ -75,9 +75,9 @@ io.sockets.on('connection', function(socket) {
 
         var thisRoom = io.sockets.adapter.rooms[roomId];
         if (Object.keys(thisRoom).length < 2) {
-            io.to(roomId).emit('chat message', "Welcome to " + roomId + " - please wait to be joined!");
+            io.to(roomId).emit('system message', "Welcome to " + roomId + " - please wait to be joined!");
         } else {
-            io.to(roomId).emit('chat message', "Welcome to room " + roomId + " - say hi!");
+            io.to(roomId).emit('system message', "Welcome to room " + roomId + " - say hi!");
         }
     });
 });
@@ -95,7 +95,9 @@ io.on('connection', function(socket) {
 io.on('connection', function(socket) {
     socket.on('chat message', function(msg) {
         console.log('message: ' + msg);
-        io.to(msg.currentRoomId).emit('chat message', msg.message);
+        //io.broadcast.to(msg.currentRoomId).emit('chat message', msg.message);
+        socket.broadcast.to(msg.currentRoomId).emit('chat message', msg.message);
+        socket.emit('my message', msg.message);
     });
 });
 

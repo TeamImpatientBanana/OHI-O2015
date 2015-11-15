@@ -15,8 +15,16 @@ $('form').submit(function() {
     return false;
 });
 
+socket.on('system message', function(msg) {
+    $('#messages').append($("<li class='systemMessage'>").text("System: " + msg));
+});
+
 socket.on('chat message', function(msg) {
-    $('#messages').append($('<li>').text(msg));
+    $('#messages').append($("<li class='theirMessage'>").text("Them: " + msg));
+});
+
+socket.on('my message', function(msg) {
+    $('#messages').append($("<li class='myMessage'>").text("You: " + msg));
 });
 
 socket.on('giveRoomIdToClient', function(msg) {
